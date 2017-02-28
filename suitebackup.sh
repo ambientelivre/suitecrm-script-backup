@@ -1,0 +1,29 @@
+#!/bin/bash
+# suitecrm-script-backup
+# A Backup Script for SuiteCRM by @ambientelivre
+# The project is open source in https://github.com/ambientelivre/suitecrm-script-backup
+# contrib!
+# Create by marcio@ambientelivre.com.br
+
+
+# Dir install SuiteCRM
+SUITECRM_DIR=/var/www/html/suitecrm/SuiteCRM-7.6.6
+
+#User access SuiteCRM database
+DATABASE_USER=root
+
+# Passwd for user access suitecrm database
+DATABASE_PWD=sejalivre
+
+# Name of the Database SuiteCRM
+DATABASE_NAME=suitecrm766
+
+# Path to destination for backup file
+BACKUP_PATH=/home/marcio
+DATE_NOW=$(date +%d-%m-%y)
+
+cd $BACKUP_PATH
+mysqldump -u$DATABASE_USER -p$DATABASE_PWD $DATABASE_NAME > $BACKUP_PATH/backup_$DATE_NOW.sql
+sudo tar -pczvf $BACKUP_PATH/suitecrm-app-and-data-backup.tar.gz $SUITECRM_DIR $BACKUP_PATH/backup_$DATE_NOW.sql
+rm $BACKUP_PATH/backup_$DATE_NOW.sql
+echo "Backup finish!"
