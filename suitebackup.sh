@@ -7,7 +7,7 @@
 
 
 # Dir install SuiteCRM
-SUITECRM_DIR=/var/www/html/suitecrm/SuiteCRM-7.6.6
+SUITECRM_DIR=/var/www/html
 
 #User access SuiteCRM database
 DATABASE_USER=root
@@ -16,14 +16,14 @@ DATABASE_USER=root
 DATABASE_PWD=sejalivre
 
 # Name of the Database SuiteCRM
-DATABASE_NAME=suitecrm766
+DATABASE_NAME=suitecrm
 
 # Path to destination for backup file
-BACKUP_PATH=/home/marcio
+BACKUP_PATH=/home/ambientelivre
 DATE_NOW=$(date +%d-%m-%y)
 
 cd $BACKUP_PATH
 mysqldump -u$DATABASE_USER -p$DATABASE_PWD $DATABASE_NAME > $BACKUP_PATH/backup_$DATE_NOW.sql
-sudo tar -pczvf $BACKUP_PATH/suitecrm-app-and-data-backup.tar.gz $SUITECRM_DIR $BACKUP_PATH/backup_$DATE_NOW.sql
+tar -pczvf $BACKUP_PATH/suitecrm-app-and-data-backup_$DATE_NOW.tar.gz $SUITECRM_DIR $BACKUP_PATH/backup_$DATE_NOW.sql
 rm $BACKUP_PATH/backup_$DATE_NOW.sql
 echo "Backup finish!"
