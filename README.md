@@ -12,4 +12,5 @@ exec crontab -e
 
 edit:
 #backup suiteCRM base + files
+
 01 00 * * * cd /var/www/html/suitecrm-script-backup; sh suitebackup.sh
